@@ -121,7 +121,7 @@ RUN apk add --no-cache tzdata ffmpeg ;\
         echo '  sed -i "s/^m3u8_dir_path=.*/m3u8_dir_path=\/home\/media\/hls/g" $EASYDARWIN_HOME/easydarwin.ini';\
         echo 'fi';\
         echo 'if [[ -n "$STREAM_ROOT_PATH" ]];then';\
-        echo '  sed -i "s/^\//stream_265=.*/\/$STREAM_ROOT_PATH=default/g" $EASYDARWIN_HOME/easydarwin.ini';\
+        echo '  sed -i "s/^\/stream_265=.*/\/$STREAM_ROOT_PATH=default/g" $EASYDARWIN_HOME/easydarwin.ini';\
         echo 'fi';\
         echo 'chmod +x $EASYDARWIN_HOME/easydarwin';\
         echo 'echo "$EASYDARWIN_HOME" > /app/easydarwin_home';\
