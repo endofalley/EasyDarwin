@@ -1,13 +1,13 @@
 FROM golang:alpine AS baseBuild
 ARG OUT_PUT_DIR=/tmp/build/easydarwin
 WORKDIR /app
-ADD EasyDarwin EasyDarwin
 RUN apk add --no-cache git \
                         gcc \
                         g++ \
                         nodejs \
                         npm \
                         dos2unix ; \
+        git clone https://github.com/bruce-qin/EasyDarwin.git --depth=1 EasyDarwin;\
         cd EasyDarwin;\
         go get -u;\
         npm run build:lin;\
@@ -117,7 +117,7 @@ RUN apk add --no-cache tzdata ffmpeg ;\
         echo '  sed -i "s/^multicast_svc_bind_inf=.*/multicast_svc_bind_inf=$EAYDARWIN_MULTICST_BIND_INF_NAME/g" $EASYDARWIN_HOME/easydarwin.ini';\
         echo 'fi';\
         echo 'if [ "$SAVE_STREAM_TO_LOCAL" == "1" ];then';\
-        echo '  sed -i "s/^save_stream_to_local=.*/save_stream_to_local=$SAVE_STREAM_TO_LOCAL/g" $EASYDARWIN_HOME/easydarwin.ini';\
+        echo '  sed -i "s/^save_stream_to_local=.*/keep_players=$SAVE_STREAM_TO_LOCAL/g" $EASYDARWIN_HOME/easydarwin.ini';\
         echo '  sed -i "s/^m3u8_dir_path=.*/m3u8_dir_path=\/home\/media\/hls/g" $EASYDARWIN_HOME/easydarwin.ini';\
         echo 'fi';\
         echo 'chmod +x $EASYDARWIN_HOME/easydarwin';\
